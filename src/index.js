@@ -5,6 +5,7 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import SmartProductSearchPage from "./pages/SmartProductSearchPage"; // Imported the new page
 
 import {
   Home,
@@ -38,6 +39,8 @@ root.render(
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<PageNotFound />} />
           <Route path="/product/*" element={<PageNotFound />} />
+          {/* New Smart Product Search route */}
+          <Route path="/smart-product-search" element={<SmartProductSearchPage />} />
         </Routes>
       </Provider>
     </ScrollToTop>
