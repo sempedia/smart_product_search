@@ -1,149 +1,129 @@
-## Run Locally
+# 🛒 E-commerce Platform with AI-Powered Smart Search
 
-Clone the project
-
-```bash
-  git clone git@github.com:sempedia/smart_product_search.git
-```
-
-Go to the project directory
-
-```bash
-  cd ecommerce
-```
-
-Install dependencies
-
-```bash
-  npm install
-
-  or
-
-  npm install react-material-ui-carousel --save --legacy-peer-deps
-```
-
-Start the server
-
-```bash
-  npm start
-```
-
-The server should now be running. You can access the application by opening a web browser and entering the following URL:
-
-```bash
-  http://localhost:3000
-```
-
-
-# E-commerce AI Backend
-
-This is the backend service for the E-commerce React application.
-It provides an **AI-powered Smart Product Search** API that allows users to search for products using **natural language queries** such as:
-
-> "Show me running shoes under $100 with good reviews"
+This project is an e-commerce platform with a **React** frontend and an **AI-powered backend** built with **FastAPI** and **spaCy** for natural language product search. The platform allows users to browse products and use an advanced search feature to find items using conversational queries.
 
 ---
 
-## 🚀 How to Run the App
+### 💻 Frontend – E-commerce Website
 
-### 1️⃣ Navigate to the backend directory
-```bash
-cd api/smart_product_search
-```
+This is a modern, React-based e-commerce website where users can:
 
-### 2️⃣ (Optional) Create and activate a virtual environment
-```bash
-python3 -m venv .venv
-source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
-```
+* Browse a catalog of products (mocked using the Fake Store API).
+* View detailed product information and categories.
+* Interact with a clean, responsive UI built with Material UI and Carousel components.
 
-### 3️⃣ Install dependencies
-```bash
+#### How to Run the Frontend
 
-pip install -r requirements.txt
-```
+1.  **Clone the repository:**
+    ```bash
+    git clone git@github.com:sempedia/smart_product_search.git
+    ```
 
-### 4️⃣ Start the FastAPI server
-```bash
+2.  **Navigate to the project directory:**
+    ```bash
+    cd ecommerce
+    ```
 
-uvicorn main:app --reload
-```
-### The backend will be running at:
+3.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+    or
+    ```bash
+    npm install react-material-ui-carousel --save --legacy-peer-deps
+    ```
 
-```bash
-http://localhost:8000
-```
+4.  **Start the development server:**
+    ```bash
+    npm start
+    ```
+    The application will be accessible at: `http://localhost:3000`
 
-### You can view the interactive API docs here:
+---
 
-```bash
-Swagger UI → http://localhost:8000/docs
+### 🤖 Backend – E-commerce AI **NLP** Backend
 
-ReDoc → http://localhost:8000/redoc
-```
+This is the backend service for the E-commerce React application. It provides an **AI-powered Smart Product Search NLP API** that allows users to search for products using **natural language queries**, such as:
 
+> "Show me running shoes under $100 with good reviews"
 
-### 🤖 AI Feature
-Chosen Feature:
-Option A – Smart Product Search (NLP)
+#### How to Run the Backend
 
-This feature allows users to:
+1.  **Navigate to the backend directory:**
+    ```bash
+    cd api/smart_product_search
+    ```
 
-Search using natural language instead of fixed keywords.
+2.  **(Optional) Create and activate a virtual environment:**
+    ```bash
+    python3 -m venv .venv
+    source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+    ```
 
-Apply filters like maximum price and rating from the query text.
+3.  **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-Automatically match synonyms and variations (e.g., "men", "men's", "mens").
+4.  **Start the FastAPI server:**
+    ```bash
+    uvicorn main:app --reload
+    ```
+    The backend will be running at: `http://localhost:8000`
 
-Example:
+You can view the interactive API documentation here:
+* **Swagger UI** → `http://localhost:8000/docs`
+* **ReDoc** → `http://localhost:8000/redoc`
 
-```bash
+---
 
-Query: "Show me running shoes under $100 with good reviews"
-Result: List of products that are shoes, under $100, and have a high rating.
-```
+### 🧠 AI Feature Details
+
+**Chosen Feature:** Option A – Smart Product Search (**NLP**)
+
+This feature enables users to:
+* Search using natural language instead of fixed keywords.
+* Apply filters like maximum price and minimum rating directly from the query text.
+* Automatically match synonyms and variations (e.g., "men", "men's", "mens").
+
+**Example:**
+* **Query:** "Show me running shoes under $100 with good reviews"
+* **Result:** A list of products that are shoes, priced under $100, and have a high rating.
 
 ### 🛠 Tools & Libraries Used
+The backend's AI functionality is powered by the following libraries:
 
-- FastAPI → High-performance backend API framework.
+* **FastAPI:** High-performance backend API framework.
+* **Uvicorn:** ASGI server to run FastAPI.
+* **spaCy:** A powerful Natural Language Processing (**NLP**) library for extracting keywords, lemmas, and applying filters from the query.
+* **Pydantic:** Used for data validation and serialization.
+* **Typing:** For type hints, ensuring cleaner and more maintainable code.
 
-- Uvicorn → ASGI server to run FastAPI.
-
-- spaCy → Natural Language Processing (NLP) for extracting keywords, lemmas, and filtering.
-
-- pydantic → Data validation and serialization.
-
-- typing → Type hints for cleaner code.
-Find them all in `api/smart_product_search/requirements.txt`
+All dependencies can be found in `api/smart_product_search/requirements.txt`.
 
 ### 📦 Product Data Source
 
-The product data used in this backend is **mocked** and fetched live from the public [FakeStoreAPI](https://fakestoreapi.com/), which provides fake e-commerce product data for testing and prototyping purposes.
+The product data is **mocked** and fetched live from the public **FakeStoreAPI**. This dynamic data source is ideal for development and testing purposes, meaning:
 
-This means:
-- No real database is used.
-- The product catalog is dynamic and reflects the current data from the FakeStoreAPI.
-- Ideal for demo and development but not for production use.
+* No real database is used.
+* The product catalog is always up-to-date with the FakeStoreAPI.
+* This setup is perfect for demos but not intended for a production environment.
 
 ---
 
 ### 📌 Assumptions
 
-Only English language search queries are currently supported.
+* Only **English** language search queries are currently supported.
+* Price and rating filters are parsed directly from the user's query using a combination of regex and **NLP**.
+* Categories are optional; users can search across the entire catalog without specifying a category.
+* The backend is designed to integrate with the React frontend in the `ecommerce` root folder.
 
-Price and rating filters are parsed directly from the user's query using regex + NLP.
-
-Categories are optional — users can search across the entire catalog without selecting a category.
-
-This backend is designed to integrate with the React frontend in the ecommerce root folder.
 
 ### 🧪 Testing the Smart Product Search API
+
+**Example request:**
 ```bash
-
-Example request
-
 GET http://localhost:8000/smart-product-search?query=shoes%20under%20$100
-
 Example response:
 
 
